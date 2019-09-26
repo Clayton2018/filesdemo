@@ -49,4 +49,14 @@ public class Course implements Serializable {
         this.passingScore = passingScore;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                ", passingScore=" + passingScore +
+                '}';
+    }//end toString
+
 }//end class

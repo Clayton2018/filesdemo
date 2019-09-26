@@ -1,14 +1,18 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 
 public class SerializationDemo {
 
+
     public static void main(String[] args) {
 
         Course course = new Course("Java Programming", "Oracle", "JP", 60);
+
+        Path path = Paths.get("C:/Users/TRAIN/Downloads/Clayton Oracle Java programs/Java Programming 2019 Learner/details.ser");
+
+        System.out.println(course);
 
     }//end main
 
@@ -30,10 +34,14 @@ public class SerializationDemo {
 
     }//end serializableData
 
-    public static deSerializableData(Path path){
+    public static Course deSerializableData(Path path){
 
-        try(){
+        try(FileInputStream fileIn = new FileInputStream(path.toString());
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn))
+        {
 
+            Course course = (Course) objectIn.readObject();
+            return course;
 
         }//end try
 
@@ -56,6 +64,11 @@ public class SerializationDemo {
 
     public static void displayData(Course course){
 
+        System.out.println("Deserialized Course Details...");
+        System.out.println("Name     : " + course.getName());
+        System.out.println("Type     : " + course.getType());
+        System.out.println("Code     : " + course.getCourseCode());
+        System.out.println("Pass Score     : " + course.getPassingScore());
 
 
     }//end displayData
